@@ -1,0 +1,42 @@
+<div class="container nav">
+    <div class="logo">
+        <img src="assets/logo-without-name.png" alt="Fiverr Cloud Logo" />
+        Fiverr Cloud
+    </div>
+    <span class="menu-toggle" (click)="openMobileMenu()">☰</span>
+    <nav class="nav-links">
+        <a href="#services"><span class="material-icons-outlined">build</span>Services</a>
+        <a href="#solutions"><span class="material-icons-outlined">settings</span>Solutions</a>
+        <a href="#pricing"><span class="material-icons-outlined">payments</span>Pricing</a>
+        <a routerLink="#contact" class="btn-primary">Get Started</a>
+    </nav>
+</div>
+
+<!-- Mobile Menu Overlay -->
+<div class="mobile-menu-overlay" (click)="closeMobileMenu()" id="mobileMenu" [class.open]="mobileMenuOpen"
+    [class.closing]="isClosing">
+    <div class="mobile-menu-panel">
+
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <img src="assets/logo-without-name.png" alt="Fiverr Cloud" />
+                <span>Fiverr Cloud</span>
+            </div>
+            <button class="close-btn" (click)="$event.stopPropagation(); closeMobileMenu()">✕</button>
+        </div>
+
+        <nav class="mobile-menu-links">
+            <a href="#services" (click)="$event.stopPropagation(); closeMobileMenu()">Services</a>
+            <a href="#solutions" (click)="$event.stopPropagation(); closeMobileMenu()">Solutions</a>
+            <a href="#pricing" (click)="$event.stopPropagation(); closeMobileMenu()">Pricing</a>
+            <a href="#contact" (click)="$event.stopPropagation(); closeMobileMenu()">Contact Us</a>
+        </nav>
+
+        <div class="mobile-menu-footer">
+            <a href="#contact" (click)=" $event.stopPropagation(); closeMobileMenu()"
+                class="btn-primary text-center">Get
+                Started</a>
+        </div>
+
+    </div>
+</div>

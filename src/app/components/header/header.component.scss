@@ -1,0 +1,204 @@
+:host {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: block;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 10px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 700;
+        font-size: 20px;
+
+        img {
+            width: 40px;
+            height: 40px;
+        }
+    }
+
+
+    .nav-links {
+        display: flex;
+        gap: 24px;
+
+        a {
+            font-weight: 500;
+            justify-content: center;
+            color: var(--muted);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.25s ease, transform 0.25s ease;
+
+            .material-icons-outlined {
+                font-size: 18px;
+                transition: transform 0.25s ease, color 0.25s ease;
+            }
+
+            &:hover {
+                color: var(--text);
+                transform: translateY(-2px);
+
+                .material-icons-outlined {
+                    transform: translateX(4px);
+                    color: var(--primary);
+                }
+            }
+        }
+    }
+
+    .menu-toggle {
+        display: none;
+        cursor: pointer;
+        font-size: 26px;
+    }
+}
+
+@media(max-width:768px) {
+    .container {
+
+        .nav-links {
+            display: none;
+        }
+
+        .menu-toggle {
+            display: block;
+        }
+    }
+}
+
+/* Overlay */
+.mobile-menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    display: none;
+    z-index: 9999;
+
+    /* Show overlay */
+    &.open .mobile-menu-panel {
+        animation: slideIn 0.35s ease forwards;
+    }
+
+    &.closing .mobile-menu-panel {
+        animation: slideOut 0.35s ease forwards;
+    }
+
+    &.open,
+    &.closing {
+        display: block;
+    }
+
+
+    .mobile-menu-panel {
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100%;
+        width: 88%;
+        max-width: 360px;
+        background: #0b0f14;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        animation: slideIn 0.35s ease forwards;
+        transform: translateX(100%);
+
+        .mobile-menu-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .logo {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-weight: 600;
+            }
+
+            img {
+                width: 32px;
+            }
+
+            .close-btn {
+                background: none;
+                border: none;
+                font-size: 22px;
+                color: #fff;
+                cursor: pointer;
+            }
+        }
+
+        .mobile-menu-links {
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+
+            a {
+                padding: 18px 0;
+                font-size: 18px;
+                color: #cbd5e1;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+                transition: color 0.3s ease, padding-left 0.3s ease;
+
+                &:hover {
+                    color: #7c5cff;
+                    padding-left: 6px;
+                }
+            }
+        }
+
+        .mobile-menu-footer {
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+
+            .text-link {
+                text-align: center;
+                color: #cbd5e1;
+
+                .btn-primary {
+                    width: 100%;
+                    padding: 14px;
+                    border-radius: 999px;
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+}
+
+/* Animations */
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(100%);
+    }
+}

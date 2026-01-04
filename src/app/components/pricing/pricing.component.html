@@ -1,0 +1,33 @@
+<section id="pricing">
+    <div class="section-title text-center">
+        <h2>Pricing Plans</h2>
+        <p>Simple plans designed for every stage of your business</p>
+    </div>
+
+    <div class="billing-toggle mb-3">
+        <span [class.active]="!yearlyBilling" id="monthlyLabel">Monthly</span>
+        <label class="switch">
+            <input type="checkbox" (change)="toggleBilling($event)">
+            <span class="slider"></span>
+        </label>
+        <span [class.active]="yearlyBilling" id="yearlyLabel">Yearly <small>(save 20%)</small></span>
+    </div>
+
+    <div class="container pricing-cards">
+        <div class="card pricing-card" *ngFor="let plan of plans" [ngClass]="{'featured': plan.featured}">
+            <span class="badge" *ngIf="plan.featured">{{plan.badge}}</span>
+            <h3 class="title">{{plan.name}}</h3>
+            <p class="plan-desc">{{plan.desc}}</p>
+            <p class="price">
+                <span *ngIf="plan.name !== 'Enterprise'" class="price-value">${{yearlyBilling ? plan.year :
+                    plan.month}}</span>
+                <span *ngIf="plan.name !== 'Enterprise'">/month</span>
+                <span *ngIf="plan.name === 'Enterprise'">Custom</span>
+            </p>
+            <ul>
+                <li *ngFor="let item of plan.features">{{item}}</li>
+            </ul>
+            <a [ngClass]="plan.featured ? 'btn-primary' : 'btn-secondary'" href="#">{{plan.button}}</a>
+        </div>
+    </div>
+</section>
